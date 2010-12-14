@@ -1,0 +1,224 @@
+Crypto game mechanics draft (Under heavy development):
+
+Goal of game: Retrieve opponent's private key.
+
+Each player starts with a 512-bit RSA assymetric key and 500 entropy.
+
+Decks of cards can have a maximum of 60 cards and each player starts
+the game with 5 cards randomly chosen from his deck. On the start of
+each round, the player draws one card at random from his deck. Maximum
+hand size is 7, in the end of the player's turn he has to discard
+surplus cards.
+
+[Entropy] 
+
+Entropy is the building block of the cryptowars game - like energy is
+in Pokemon and mana in MTG. Each player gains a steady amount of
+entropy each round.
+
+[Locations]
+
+The core of the game are Locations:
+
+Location cards represent places on the world where your agents can
+"work", for example the Stockmarket, the player's Headquarters or a
+shady bar. Of course agent work is all about information gathering.
+
+Location cards protect your assymetric key and provide buffs to your
+agents. Without location cards, enemy agents would be able to attack
+your assymetric key directly. Location cards also enable the player to
+deploy more agents, since each Location unlocks a number of slots on
+the player's active area..
+
+An agent in a friendly location protects it and grants buffs to the
+player and to his agents. 
+Enemy agents can try to infiltrate the location to steal information
+from the agents already inside or to destroy the location if it's
+unprotected.
+
+[Agents]
+
+Players deploy agents to do their deeds. They infiltrate the locations
+of the opponent, guard the player's locations, attack other agents or
+scan areas to discover the enemy's cards.  
+Players can trivially generate pawn agents which are weak, but can
+later be promoted to more advanced agents. 
+Agents can be upgraded by training. Each agent can spend one round
+training to gain a train token, and players can spend train tokens to
+promote their agents.
+
+A chart of the agent evolutions follows:
+
+*
+|- Pawn (Alice,Bob, etc.) Tier 1, Evolution 1
+|
+- Agent (Agent Alice, Agent Bob, etc.) Tier 1, Evolution 2
+|
+|- Agent, Level 2 (Agent Mallory, Agent Eve, etc.) Tier 2, Evolution 3
+|
+- Agent, Level 3 (Agent Mallory, Agent Eve, etc.) Tier 2, Evolution 4
+|
+|- Agent, Level 4 (Agent Trent, etc.) Tier 3, Evolution 5
+*
+
+There are two types of promotions:
+* Promotion by card:
+  Each agent can be promoted by using an Agent card. If the agent has
+  the necessary train tokens that the Agent card needs, the agent can
+  be promoted to that card's Agent.
+  Promotion by card increases the Agent's tier.
+* Promotion by evolution:
+  Each Agent can be promoted by evolution if he has the necessary
+  train tokens that his Tier needs.
+  Practically, every agent of Evolution 1 or 3, can be promoted to
+  Evolution 2 and 4 respectively, by spending the train tokens that
+  his Tier needs.
+  At the moment, a Tier 1, Evolution 1 agent needs 2 train tokens to
+  become Tier 1, Evolution 2. And a Tier 2, Evolution 3 agent needs 4
+  train tokens to become Tier2, Evolutin 4.
+  Tier 3 agents are strong enough that don't need promotions by evolution. 
+
+[Technology and Equipment]
+
+Technology cards are cards that grant buffs to the player or to the
+player's agents. 
+Equipment cards are cards attached to agents offering special
+abilities and stats. 
+
+[Privacy]
+
+Another core concept of cryptowars is the fact that everything is
+hidden by default. Every technology, location or agent is played
+hidden from the opponent, until he manages to discover it.
+
+There are four kinds of cards: 'technology', 'agent', 'locations' and
+'entropy':
+
+Technology:
+        These are cards that stay on the battlefield and help the
+        player and his agents.
+Equipment:
+        These cards represent equipment attached to agents that help
+        them in various ways.
+Agent:
+        These are agent upgrades. Pawn agents can be upgraded to more
+        advanved units, using the agent cards. This way the gain
+        advanced abilities and statistics.
+Locations:
+        Location guards represent locations in the game world. PLayers
+        have to deploy agents to interact with locations to win.
+        
+[Infiltration and espionage]
+
+It's a tough job for an agent to infiltrate a location, let alone stay
+in there undetected to gather the necessary info.
+The hardness of this task depends on many factors:
+Each location has two stats: Traceability and Difficulty
+Traceability signifies how hard it is for an agent to discover the
+location in the first place, and Difficulty signifies how hard it is
+for an agent to remain undetected in that location.
+
+Every round an agent remains hidden in an enemy base, the skill check
+to succeed in remaining undetected becomes harder but the damage that
+the agent inflicts to the opponent is increased respectively as
+well. 
+
+After all, it's harder for someone to stay unnoticed in a place for a
+longer period of time, but if he manages he is getting deeper into it,
+effectively increasing the damage that he deals.
+
+[Damage] 
+
+Damage to the opponent can be inflicted in various ways:
+* When an agent has successfully infiltrated a guarded enemy base.
+  In the Communication phase guards are sending information back to
+  their base, infiltrators have the chance to capture that information
+  to inflict damage to the opponent.
+* When an agent kills another agent, he retrieves all the information
+  the dead agent had effectively damaging the opponent.
+* When an agent destroys an enemy base, damage is inflicted to the
+  opponent.
+
+[Travelling]
+
+When an agent is deployed to a location, he has to travel there.
+The agent is put into a Travelling state, which is visible to the
+opponent, for a round.
+
+[Rogue agents]
+
+If an agent has to return to the player's active area after a mission
+was completed but the player has no active slots in his active area,
+that agent becomes a rogue agent.
+Lore-wise he is roaming around the globe, trying to get back to his
+active area but he carries precious information and he is vulnerable. 
+If an opponent captures him, he deals extra damage to the rogue's player.
+In the upkeep of the rogue's player the player can call him back to
+the active area if he has opened some slots.
+   
+Each game round has the following phases which are composed by
+individual acts:
+    * Upkeep:
+      [U1] Gain entropy.
+      [U2] Upkeep effects
+      [U3] Player draws one card.
+      [U4] Agent arrival
+      [U5] Stealth rolls 
+      [U6] COllect rogue agents
+    * Active phase:
+      [A1] Players generate pawns (Alices/Bobs etc.) OR
+      [[A2] Players may play cards from their hands.
+      [A3] Players may train their agents.
+      [A4] Players may promote their agents.
+      ([A5] Players may deploy agents.)]
+    * Battle phase
+      [B1] Detected combat.
+    * Communication phase
+      [C1] Players may play cards from their hands.
+      ([C2] Players may deploy agents.)
+      [C3] Damage calculation for infiltrated agents 
+    * End round:
+      [E1] 'End of the round' effects take place.
+      [E2] Player with more than 7 cards, discards cards.
+
+[U1] Gain entropy:
+     In this act, each player gains a predetermined amount of entropy.
+     In the future, upkeep entropy will be able to be increased.
+[U2] Upkeep effects:
+     Cards with upkeep effects happen now.
+[U3] Player draws one card
+[U4] Agent arrival:
+     Agents that were travelling reach their destination in this act. 
+[U5] Stealth rolls:
+     Guards in breached locations are rolling passive stealth checks
+     in this act to detect the attackers.  
+[U6] Collect rogue agents:
+     Players with agents gone rogue now have the chance to collect
+     them if they have space in their active areas.
+     
+[A1] Players generate pawns (Alices/Bobs etc.):
+     Players may spend an amount of entropy to generate a pawn agent.
+     Pawn agents come into play tapped and players that generate pawn
+     agents lose the rest of their Active Phase.
+[A2] Players may play cards from their hands:
+     Players can play technology/equipment/location cards in this act.
+[A3] Players may train their agents
+[A4] Players may promote their agentsO
+[A5] Players may deploy agents.
+     Players can move agents to friendly or enemy locations, or put
+     agents currently in locations back to their active areas.
+     
+[B1] Detected combat.
+     Guards that detected infiltrators in their locations, can now take
+     action. They can either decide to confront physically the attacker or
+     leave him be for the moment.
+[C1] Players may play cards from their hands.
+[C2] Players may deploy agents.
+     Players that didn't deploy agents in the Active Phase can do it now. 
+[C3] Damage calculation for infiltrated agents 
+     If an agent has succesfully infiltrated a guarded location, damage is
+     inflicted to the location's player in this act.
+     
+[E1] 'End of the round' effects take place.
+[E2] Player with more than 7 cards, discards cards.
+     

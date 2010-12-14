@@ -1,0 +1,41 @@
+name: Blue
+description: Blue deck
+cards:
+- name: Blue
+  quantity: 2
+  attack: 7
+  defence: 0
+  description: Ta  
+- name: Green
+  quantity: 1
+  attack: 1
+  defence: 1
+  description: Ta    
+- name: Yellow
+  quantity: 1
+  attack: 5
+  defence: 2
+  description: Ta    
+- name: Red
+  quantity: 1
+  attack: 1
+  defence: 2
+  description: Ta    
+- name: Purple
+  quantity: 2
+  attack: 2
+  defence: 1
+  description: Ta    
+- name: White
+  quantity: 3
+  attack: 0
+  defence: 7
+  description: Ta    
+- name: Cyan
+  quantity: 3
+  attack: 0
+  defence: 3
+  description: Ta    
+  
+
+

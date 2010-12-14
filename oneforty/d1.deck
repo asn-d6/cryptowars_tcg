@@ -1,0 +1,40 @@
+name: Pepper
+description: Pepper deck
+cards:
+- name: Dragon
+  quantity: 2
+  attack: 2
+  defence: 3
+  description: Fu
+- name: Goblin
+  quantity: 1
+  attack: 3
+  defence: 2
+  description: Fu  
+- name: Balloon
+  quantity: 1
+  attack: 1
+  defence: 1    
+  description: Fu  
+- name: Train
+  quantity: 1
+  attack: 1
+  defence: 2    
+  description: Fu  
+- name: Bicycle
+  quantity: 2
+  attack: 4
+  defence: 0
+  description: Fu  
+- name: Cup
+  quantity: 3
+  attack: 2
+  defence: 3
+  description: Fu  
+- name: Circle
+  quantity: 3
+  attack: 1
+  defence: 2
+  description: Fu  
+  
+
